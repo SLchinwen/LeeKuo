@@ -1,0 +1,40 @@
+name: Publish to GitHub Pages
+
+# 觸發條件：當有人 Push 到 main 分支時執行
+on:
+  push:
+    branches:
+      - main  # 注意：如果您原本的主分支叫 master，請將此處改為 master
+
+# 權限設定：賦予機器人寫入權限，以便將網頁檔案推送到 gh-pages 分支
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. 下載專案代碼
+      - uses: actions/checkout@v4
+
+      # 2. 設定 Python 環境
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.x
+
+      # 3. 安裝 MkDocs 與 Material 主題
+      # (因為 Material 主題已內建 Mermaid 支援，通常不需額外安裝插件)
+      - name: Install dependencies
+        run: |
+          pip install mkdocs-material
+
+      # 4. 設定 Git 使用者 (GitHub Actions 機器人)
+      - name: Configure Git user
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      # 5. 建置並部署到 gh-pages 分支
+      - name: Deploy to GitHub Pages
+        run: mkdocs gh-deploy --force

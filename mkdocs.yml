@@ -1,0 +1,20 @@
+site_name: 客戶服務手冊
+site_url: https://<您的GitHub帳號>.github.io/<專案名>
+theme:
+  name: material            # 使用最美的 Material 主題
+  language: zh-TW           # 繁體中文介面
+  features:
+    - navigation.expand     # 左側選單預設展開
+    - navigation.top        # 回到頂部按鈕
+  palette:
+    primary: teal           # 主色調 (可改)
+
+markdown_extensions:
+  - pymdownx.superfences:   # 這是支援 Mermaid 的關鍵擴充
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+plugins:
+  - search                  # 搜尋功能
