@@ -1,11 +1,11 @@
 ---
 approval_status: internal
-authoring_mode: 原創
+authoring_mode: manual
 category: manuals
-client: leekuo
+client: 立國工程
 confidence: 0.8
 date: 2026-01-20
-doc_id: leekuo--factory-data-entry
+doc_id: leekuo--model-process-documentation
 module: 主檔與基礎資料模組
 needs_review: true
 organization: client-project
@@ -15,28 +15,29 @@ project: leekuo
 publish_blockers:
 - STATUS_NOT_RELEASE
 - APPROVAL_NOT_CLIENT_REVIEWED_OR_APPROVED
+- QUALITY_SCORE_TOO_LOW
 publish_recommendation: blocked
 publish_target: none
 quality_flags: []
-quality_score: 0.85
+quality_score: 0.75
 status: Draft
-suggested_filename: leekuo--factory-data-entry.md
+suggested_filename: leekuo--model-process-documentation.md
 tags:
 - leekuo
 - 程式操作
-- 廠區管理
-title: MCR100｜廠區資料建檔
+- 工序管理
+title: MCR130｜型號工序建檔
 type: 程式操作說明
 visibility: internal
 ---
 
-# MCR100｜廠區資料建檔
+# MCR130｜型號工序建檔
 
-![MCR100｜廠區資料建檔](https://s3.hicloud.net.tw/leekuo/HTML/image/mcr100.png)
+![MCR130｜型號工序建檔](https://s3.hicloud.net.tw/leekuo/HTML/image/mcr130.png)
 
 ## 1. 功能目的
 
-本功能用於「廠區資料建檔」，提供使用者依規範建立、查詢、維護或回報相關資料，作為後續案件管理、回報、審核與報表彙整之依據。
+本功能用於「型號工序建檔」，提供使用者依規範建立、查詢、維護或回報相關資料，作為後續案件管理、回報、審核與報表彙整之依據。
 
 ## 2. 適用角色與權限
 
@@ -67,7 +68,7 @@ visibility: internal
 
 ### Step 1：開啟功能並查詢資料
 
-1. 由主選單進入「廠區資料建檔」。
+1. 由主選單進入「型號工序建檔」。
 2. 於查詢區輸入條件（例如：案件、設備、日期）。
 3. 點選「查詢」取得清單結果。
 

@@ -5,8 +5,8 @@ category: manuals
 client: 立國工程
 confidence: 0.8
 date: 2026-01-20
-doc_id: leekuo--contract-maintenance
-module: 合約與案件管理模組
+doc_id: leekuo--field-reporting
+module: 現場回報模組
 needs_review: true
 organization: client-project
 origin: 系統管理員
@@ -15,32 +15,32 @@ project: leekuo
 publish_blockers:
 - STATUS_NOT_RELEASE
 - APPROVAL_NOT_CLIENT_REVIEWED_OR_APPROVED
-- QUALITY_SCORE_TOO_LOW
 publish_recommendation: blocked
 publish_target: none
 quality_flags: []
-quality_score: 0.75
+quality_score: 0.85
 status: Draft
-suggested_filename: leekuo--contract-maintenance.md
+suggested_filename: leekuo--field-reporting.md
 tags:
+- leekuo
 - 程式操作
-- 合約管理
-title: MCR140｜維護合約建檔
+- 現場回報
+title: MCR210｜現場人員設備工序回報
 type: 程式操作說明
 visibility: internal
 ---
 
-# MCR140｜維護合約建檔
+# MCR210｜現場人員設備工序回報
 
-![MCR140｜維護合約建檔](https://s3.hicloud.net.tw/leekuo/HTML/image/mcr140.png)
+![MCR210｜現場人員設備工序回報](https://s3.hicloud.net.tw/leekuo/HTML/image/mcr210.png)
 
 ## 1. 功能目的
-本功能用於「維護合約建檔」，提供使用者依規範建立、查詢、維護或回報相關資料，作為後續案件管理、回報、審核與報表彙整之依據。
+本功能用於「現場人員設備工序回報」，提供使用者依規範建立、查詢、維護或回報相關資料，作為後續案件管理、回報、審核與報表彙整之依據。
 
 ## 2. 適用角色與權限
-- 現場人員：依授權範圍使用（主要集中於 MCR210）
-- 主管／審核者：依授權範圍使用（主要集中於 MCR220）
-- 系統管理者：可維護主檔與案件設定（主要集中於 MCR1xx）
+- **現場人員**：依授權範圍使用（主要集中於 MCR210）
+- **主管／審核者**：依授權範圍使用（主要集中於 MCR220）
+- **系統管理者**：可維護主檔與案件設定（主要集中於 MCR1xx）
 
 > 實際可見欄位與按鈕將依帳號權限顯示。
 
@@ -59,13 +59,14 @@ visibility: internal
 > 若畫面欄位名稱與本手冊不同，以系統畫面顯示為準。
 
 ## 5. 標準操作步驟（模板）
-
 ### Step 1：開啟功能並查詢資料
-1. 由主選單進入「維護合約建檔」。
+
+1. 由主選單進入「現場人員設備工序回報」。
 2. 於查詢區輸入條件（例如：案件、設備、日期）。
 3. 點選「查詢」取得清單結果。
 
 ### Step 2：新增／編輯／回報／審核（依功能）
+
 1. 於清單中選擇要處理的項目，進入明細。
 2. 依需求填寫或選擇欄位。
 3. 依功能點選「儲存／回報／核准／退回／下載」。
@@ -78,7 +79,6 @@ visibility: internal
 - **報表類（MCR230/231）**：僅彙整符合條件（常為已審核）之資料供下載或視覺化檢視。
 
 ## 7. 常見錯誤與注意事項
-
 ### 7.1 常見錯誤
 - **查詢無資料**：請確認案件/日期/設備條件是否正確。
 - **無法送出或儲存**：請檢查必填欄位是否完整。

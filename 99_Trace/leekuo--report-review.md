@@ -5,8 +5,8 @@ category: manuals
 client: 立國工程
 confidence: 0.8
 date: 2026-01-20
-doc_id: leekuo--model-process-documentation
-module: 主檔與基礎資料模組
+doc_id: leekuo--report-review
+module: 審核與管控模組
 needs_review: true
 organization: client-project
 origin: 系統管理員
@@ -21,23 +21,23 @@ publish_target: none
 quality_flags: []
 quality_score: 0.75
 status: Draft
-suggested_filename: leekuo--model-process-documentation.md
+suggested_filename: leekuo--report-review.md
 tags:
 - leekuo
 - 程式操作
-- 工序管理
-title: MCR130｜型號工序建檔
+- 審核管理
+title: MCR220｜回報審核
 type: 程式操作說明
 visibility: internal
 ---
 
-# MCR130｜型號工序建檔
+# MCR220｜回報審核
 
-![MCR130｜型號工序建檔](https://s3.hicloud.net.tw/leekuo/HTML/image/mcr130.png)
+![MCR220｜回報審核](https://s3.hicloud.net.tw/leekuo/HTML/image/mcr220.png)
 
 ## 1. 功能目的
 
-本功能用於「型號工序建檔」，提供使用者依規範建立、查詢、維護或回報相關資料，作為後續案件管理、回報、審核與報表彙整之依據。
+本功能用於「回報審核」，提供使用者依規範建立、查詢、維護或回報相關資料，作為後續案件管理、回報、審核與報表彙整之依據。
 
 ## 2. 適用角色與權限
 
@@ -68,7 +68,7 @@ visibility: internal
 
 ### Step 1：開啟功能並查詢資料
 
-1. 由主選單進入「型號工序建檔」。
+1. 由主選單進入「回報審核」。
 2. 於查詢區輸入條件（例如：案件、設備、日期）。
 3. 點選「查詢」取得清單結果。
 

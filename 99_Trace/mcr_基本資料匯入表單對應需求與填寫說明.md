@@ -186,4 +186,3 @@ generation_mode: "prompt-driven"
 * Requirement Decomposition → PRD / 匯入驗證規格
 
 > 建議此文件在需求確認會後 **轉為 Locked 版本**，避免匯入規格反覆變動。
-
