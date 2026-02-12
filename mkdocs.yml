@@ -18,3 +18,9 @@ markdown_extensions:
 
 plugins:
   - search                  # 搜尋功能
+
+nav:
+  - 首頁: index.md
+  - 立國專案管理服務:
+    - 服務總覽: 立國專案管理_服務總覽.md
+    - 工作任務與甘特圖: 立國專案_工作任務與甘特圖.md
