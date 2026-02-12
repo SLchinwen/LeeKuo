@@ -19,6 +19,7 @@ markdown_extensions:
 plugins:
   - search                  # 搜尋功能
 
+# 導覽（標題 ≤8 字）；更新：專案管理／服務總覽／任務與甘特圖
 nav:
   - 首頁: index.md
   - 專案管理:
