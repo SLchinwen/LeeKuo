@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MCR320 客戶設備對應工作項目建檔</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: "Microsoft JhengHei", "Segoe UI", sans-serif; background: #f0f2f5; }
+    .header { background: #1890ff; color: white; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .header-left { display: flex; align-items: center; gap: 10px; }
+    .header .back { cursor: pointer; font-size: 1.2em; }
+    .header h1 { margin: 0; font-size: 1.1em; font-weight: 600; }
+    .header-right { display: flex; align-items: center; }
+    .btn-guide { background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.6); padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 0.9em; }
+    .btn-guide:hover { background: rgba(255,255,255,0.3); }
+    .panel { background: white; margin: 16px; border-radius: 6px; padding: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+    .toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 12px; }
+    .btn-template { background: #fff; color: #1890ff; border: 1px solid #1890ff; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: 500; text-decoration: none; }
+    .btn-template:hover { background: #e6f7ff; }
+    .btn-import { background: #1890ff; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: 500; }
+    .btn-query, .btn-export { background: #52c41a; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: 500; }
+    .search-wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-left: auto; }
+    .search-wrap input, .search-wrap select { padding: 6px 10px; border: 1px solid #d9d9d9; border-radius: 4px; }
+    .search-wrap input { width: 180px; }
+    .list-head { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .list-head h2 { margin: 0; font-size: 1em; font-weight: 600; }
+    .badge { background: #1890ff; color: white; padding: 2px 10px; border-radius: 12px; font-size: 0.85em; }
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9em; }
+    th, td { border: 1px solid #e8e8e8; padding: 10px 8px; text-align: left; }
+    th { background: #fafafa; font-weight: 600; color: #000; }
+    tr:nth-child(even) { background: #fafafa; }
+    tr:hover { background: #f0f7ff; }
+    .num { text-align: right; }
+    .actions { display: flex; gap: 8px; }
+    .icon-edit { color: #52c41a; cursor: pointer; }
+    .icon-del { color: #ff4d4f; cursor: pointer; }
+    .pagination { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 12px; font-size: 0.9em; }
+    .pagination a, .pagination span { padding: 4px 10px; border: 1px solid #d9d9d9; border-radius: 4px; text-decoration: none; color: #333; }
+    .pagination a:hover { border-color: #1890ff; color: #1890ff; }
+    .pagination .current { background: #1890ff; color: white; border-color: #1890ff; }
+    .scope-info { font-size: 0.85em; color: #666; margin-bottom: 8px; }
+    .scope-hint { font-size: 0.85em; color: #1890ff; margin-bottom: 8px; }
+    .unmatched-alert { color: #ff4d4f; font-weight: 600; margin-bottom: 8px; cursor: pointer; text-decoration: underline; display: inline-block; }
+    .unmatched-alert:hover { color: #cf1322; }
+    tr.row-unmatched { background: #fff2f0 !important; }
+    tr.row-unmatched td:nth-child(4) { color: #ff4d4f; font-weight: 600; }
+    .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.4); z-index: 100; align-items: center; justify-content: center; }
+    .modal-overlay.show { display: flex; }
+    .modal-box { background: white; border-radius: 8px; padding: 20px; max-width: 90%; width: 560px; max-height: 80vh; overflow: auto; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    .modal-title { margin: 0 0 12px 0; font-size: 1em; color: #ff4d4f; }
+    .modal-close { float: right; cursor: pointer; font-size: 1.2em; color: #666; }
+    .modal-close:hover { color: #000; }
+    .guide-content { font-size: 0.9em; line-height: 1.6; }
+    .guide-content h3 { margin: 12px 0 6px 0; font-size: 1em; color: #1890ff; }
+    .guide-content ul { margin: 4px 0; padding-left: 20px; }
+    .guide-content p { margin: 6px 0; }
+    .guide-content .link { color: #1890ff; word-break: break-all; }
+    .confirm-msg { margin: 0 0 16px 0; line-height: 1.6; }
+    .confirm-btns { display: flex; gap: 10px; justify-content: flex-end; }
+    .btn-yes { background: #1890ff; color: white; border: none; padding: 8px 20px; border-radius: 4px; cursor: pointer; }
+    .btn-no { background: #fff; color: #666; border: 1px solid #d9d9d9; padding: 8px 20px; border-radius: 4px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-left">
+      <span class="back" aria-label="返回">←</span>
+      <h1>客戶設備對應工作項目建檔（MCR320）</h1>
+    </div>
+    <div class="header-right">
+      <button type="button" class="btn-guide" id="btn-guide" aria-label="操作說明">📖 操作說明</button>
+    </div>
+  </header>
+
+  <div class="panel">
+    <div class="scope-hint">※ 請先選擇<strong>廠區</strong>與<strong>設備</strong>（維修廠區設備清單，單一設備），再下載範本或批次匯入該設備的標準工作項目。本作業不對應合約。</div>
+    <div class="toolbar">
+      <select id="area-select" aria-label="廠區">
+        <option value="">請選擇廠區</option>
+        <option value="AREA01">廠區一</option>
+        <option value="AREA02">廠區二</option>
+      </select>
+      <select id="device-select" aria-label="設備編號" disabled>
+        <option value="">請先選擇廠區</option>
+      </select>
+      <a href="2026-02-26_prototype_MCR320_匯入範本.csv" class="btn-template" download id="btn-download-template">📥 下載匯入範本</a>
+      <button type="button" class="btn-import" id="btn-import">批次匯入</button>
+      <button type="button" class="btn-query" id="btn-query">查詢</button>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="scope-info" id="scope-info">請選擇廠區與設備後查詢或匯入。</div>
+    <div id="unmatched-block" class="unmatched-alert" style="display: none;" title="點選可列出對應不到最新合約工作項目單價之項目">對應不到最新合約工作項目單價：<span id="unmatched-count">0</span> 筆</div>
+    <div class="list-head">
+      <h2>設備工作項目清單</h2>
+      <span class="badge" id="list-count">共 4 筆</span>
+      <button type="button" class="btn-export">匯出全部 Excel</button>
+    </div>
+    <div class="pagination">共 4 筆　每頁顯示 10 筆　第 1 頁</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>設備編號</th>
+            <th>設備名稱</th>
+            <th>項次</th>
+            <th>工作項目名稱</th>
+            <th class="num">數量</th>
+            <th class="num">加成比例</th>
+            <th>異動日期</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>A100</td>
+            <td>固定式換熱器 #A100</td>
+            <td>1.1.1</td>
+            <td>固定式換熱器導槽、導槽蓋相關管件拆卸、組立(ID&lt;=24")</td>
+            <td class="num">8</td>
+            <td class="num">100%</td>
+            <td>2026-02-26</td>
+            <td class="actions"><span class="icon-edit" aria-label="編輯">✎</span><span class="icon-del" aria-label="刪除">🗑</span></td>
+          </tr>
+          <tr class="row-unmatched">
+            <td>A100</td>
+            <td>固定式換熱器 #A100</td>
+            <td>1.1.2</td>
+            <td>固定式換熱器導槽、導槽蓋相關管件拆卸、組立(ID25"~44")</td>
+            <td class="num">8</td>
+            <td class="num">100%</td>
+            <td>2026-02-26</td>
+            <td class="actions"><span class="icon-edit" aria-label="編輯">✎</span><span class="icon-del" aria-label="刪除">🗑</span></td>
+          </tr>
+          <tr>
+            <td>A100</td>
+            <td>固定式換熱器 #A100</td>
+            <td>1.1.3</td>
+            <td>固定式換熱器導槽、導槽蓋相關管件拆卸、組立(ID45"~64")</td>
+            <td class="num">8</td>
+            <td class="num">100%</td>
+            <td>2026-02-26</td>
+            <td class="actions"><span class="icon-edit" aria-label="編輯">✎</span><span class="icon-del" aria-label="刪除">🗑</span></td>
+          </tr>
+          <tr class="row-unmatched">
+            <td>A100</td>
+            <td>固定式換熱器 #A100</td>
+            <td>1.11.2</td>
+            <td>清管器內部清理(管徑1-1/8"~2")</td>
+            <td class="num">400</td>
+            <td class="num">80%</td>
+            <td>2026-02-26</td>
+            <td class="actions"><span class="icon-edit" aria-label="編輯">✎</span><span class="icon-del" aria-label="刪除">🗑</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="pagination">
+      <a href="#">«</a><a href="#">‹</a>
+      <span class="current">1</span><a href="#">2</a>
+      <a href="#">›</a><a href="#">»</a>
+    </div>
+  </div>
+
+  <!-- 操作說明彈窗 -->
+  <div id="guide-modal" class="modal-overlay" role="dialog" aria-labelledby="guide-modal-title" aria-modal="true">
+    <div class="modal-box" style="width: 480px;">
+      <span class="modal-close" id="guide-modal-close" aria-label="關閉">×</span>
+      <h2 id="guide-modal-title" class="modal-title" style="color: #1890ff;">MCR320 客戶設備對應工作項目建檔｜操作說明</h2>
+      <div class="guide-content">
+        <h3>程式說明與何時使用</h3>
+        <p>本程式建檔<strong>維修廠區設備</strong>之<strong>標準工作項目、數量與預設加成比例</strong>，供 MCR330 試算與 MCR340 加成作業使用。<strong>對應廠區設備清單，不對應合約。</strong>作業順序：先選<strong>廠區 + 設備編號</strong>（單一設備），再匯入該設備的標準工作項目。本作業以批次匯入為主，不提供單筆新增。</p>
+        <ul>
+          <li><strong>設備建檔</strong>：依維修廠區設備清單選擇單一設備後，匯入該設備的標準工作項次、數量與加成。</li>
+          <li><strong>設備或工作項異動</strong>：設備對應工作項目、數量或加成預設值異動時，於本程式重新匯入。</li>
+          <li><strong>對應檢查</strong>：匯入或載入查詢時，可呈現<strong>對應不到最新合約工作項目單價</strong>的筆數提示；清單中無法對應的該筆以<strong>紅色</strong>顯示，請至 MCR310 補建合約工作項目。</li>
+        </ul>
+        <p><strong>重新匯入</strong>：若此設備已有工作項目資料，系統會提醒「是否清除原有資料」；確認「是」則標記刪除原資料並全部新增重匯，維持完整性。</p>
+        <h3>一、畫面區塊</h3>
+        <ul>
+          <li><strong>頂列</strong>：返回、程式標題、右上方「📖 操作說明」可開啟本說明。</li>
+          <li><strong>操作列</strong>：※ 請先選擇<strong>廠區</strong>與<strong>設備</strong>（單一）→ 下載匯入範本、批次匯入、查詢。</li>
+          <li><strong>說明列</strong>：顯示目前廠區與設備；<strong>對應不到最新合約工作項目單價</strong>筆數提示（紅色、可點選列清單）。</li>
+          <li><strong>設備工作項目清單</strong>：無法對應到合約工作項目單價的該筆以<strong>紅色</strong>顯示；表格與分頁、匯出全部 Excel。</li>
+        </ul>
+        <h3>二、主要欄位</h3>
+        <ul>
+          <li>設備編號、設備名稱、項次、工作項目名稱、數量、加成比例（%、如 80%、100%、120%、200%）、異動日期、操作（編輯／刪除）。工作項目若對應不到 MCR310 合約工作項目單價，該筆以紅色標示。</li>
+        </ul>
+        <h3>三、操作步驟</h3>
+        <ol style="margin: 4px 0; padding-left: 20px;">
+          <li><strong>先選廠區與設備</strong>：於廠區選擇維修廠區，於設備選擇單一設備（對應維修廠區設備清單）。</li>
+          <li>初次建檔可點「<strong>下載匯入範本</strong>」取得 CSV 範本，依欄位填寫該設備之工作項次、數量、加成比例後再點「批次匯入」上傳。</li>
+          <li>點「批次匯入」或「查詢」後，若有對應不到最新合約工作項目單價之筆數，會顯示紅色提示，點選可列清單；清單中該筆工作項目亦以紅色顯示。</li>
+          <li>若此設備已有資料，重新匯入時系統會詢問「是否清除原有資料」，確認「是」則標記刪除原資料並全部新增重匯。</li>
+          <li>可「匯出全部 Excel」匯出清單；單筆修正可於清單上使用編輯／刪除。加成比例後續可於 <strong>MCR340 設備追加請款建立</strong> 之加成作業調整。</li>
+        </ol>
+        <h3>四、雛型與範本連結</h3>
+        <p>本雛型內建操作說明；匯入範本可於畫面上「下載匯入範本」取得。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 對應不到合約工作項目單價清單彈窗 -->
+  <div id="unmatched-modal" class="modal-overlay" role="dialog" aria-labelledby="unmatched-modal-title" aria-modal="true">
+    <div class="modal-box">
+      <span class="modal-close" id="unmatched-modal-close" aria-label="關閉">×</span>
+      <h2 id="unmatched-modal-title" class="modal-title" style="color: #ff4d4f;">對應不到最新合約工作項目單價</h2>
+      <p style="font-size: 0.9em; color: #666; margin: 0 0 8px 0;">以下工作項目於目前合約（MCR310）中無對應單價，請至 MCR310 補建或調整合約工作項目。</p>
+      <table class="modal-table" style="width:100%; border-collapse:collapse; font-size:0.9em; margin-top:8px;">
+        <thead>
+          <tr><th style="border:1px solid #e8e8e8; padding:8px; text-align:left; background:#fff2f0;">項次</th><th style="border:1px solid #e8e8e8; padding:8px; text-align:left; background:#fff2f0;">工作項目名稱</th></tr>
+        </thead>
+        <tbody>
+          <tr><td style="border:1px solid #e8e8e8; padding:8px;">1.1.2</td><td style="border:1px solid #e8e8e8; padding:8px; color:#ff4d4f;">固定式換熱器導槽、導槽蓋相關管件拆卸、組立(ID25"~44")</td></tr>
+          <tr><td style="border:1px solid #e8e8e8; padding:8px;">1.11.2</td><td style="border:1px solid #e8e8e8; padding:8px; color:#ff4d4f;">清管器內部清理(管徑1-1/8"~2")</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 重新匯入確認彈窗 -->
+  <div id="reimport-confirm-modal" class="modal-overlay" role="dialog" aria-labelledby="reimport-confirm-title" aria-modal="true">
+    <div class="modal-box" style="width: 440px;">
+      <h2 id="reimport-confirm-title" class="modal-title" style="color: #faad14;">重新匯入確認</h2>
+      <p class="confirm-msg">此設備已有工作項目資料，是否清除原有資料後全部以本次匯入取代？<br><br>確認「是」將<strong>標記刪除原資料並全部新增重匯</strong>，以維持資料完整性，避免重複或遺留上次資料差異。</p>
+      <div class="confirm-btns">
+        <button type="button" class="btn-no" id="reimport-no">否</button>
+        <button type="button" class="btn-yes" id="reimport-yes">是</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var deviceList = {
+      AREA01: [
+        { value: 'A100', text: 'A100 - 固定式換熱器 #A100' },
+        { value: 'B200', text: 'B200 - 固定式換熱器 #B200' }
+      ],
+      AREA02: [
+        { value: 'E-1326S', text: 'E-1326S - 清管器 E-1326S' }
+      ]
+    };
+    document.querySelector('.back').addEventListener('click', function () { window.history.back(); });
+    document.getElementById('btn-guide').addEventListener('click', function () {
+      document.getElementById('guide-modal').classList.add('show');
+    });
+    document.getElementById('guide-modal-close').addEventListener('click', function () {
+      document.getElementById('guide-modal').classList.remove('show');
+    });
+    document.getElementById('guide-modal').addEventListener('click', function (e) {
+      if (e.target === this) this.classList.remove('show');
+    });
+    document.getElementById('area-select').addEventListener('change', function () {
+      var area = this.value;
+      var devSelect = document.getElementById('device-select');
+      devSelect.innerHTML = '<option value="">請選擇設備</option>';
+      devSelect.disabled = !area;
+      if (area && deviceList[area]) {
+        deviceList[area].forEach(function (d) {
+          var opt = document.createElement('option');
+          opt.value = d.value;
+          opt.textContent = d.text;
+          devSelect.appendChild(opt);
+        });
+      }
+      document.getElementById('scope-info').textContent = '請選擇廠區與設備後查詢或匯入。';
+      document.getElementById('unmatched-block').style.display = 'none';
+    });
+    document.getElementById('device-select').addEventListener('change', function () {
+      var areaSelect = document.getElementById('area-select');
+      var areaName = areaSelect.options[areaSelect.selectedIndex].text.replace('請選擇廠區', '').trim() || '';
+      var devText = this.options[this.selectedIndex].text;
+      if (this.value) {
+        document.getElementById('scope-info').textContent = '廠區：' + areaName + '｜設備：' + devText + '｜匯入／查詢後可檢視對應不到最新合約工作項目單價之筆數。';
+      } else {
+        document.getElementById('scope-info').textContent = '請選擇廠區與設備後查詢或匯入。';
+      }
+    });
+    document.getElementById('btn-query').addEventListener('click', function () {
+      if (!document.getElementById('device-select').value) {
+        alert('請先選擇廠區與設備，再查詢。');
+        return;
+      }
+      document.getElementById('unmatched-count').textContent = '2';
+      document.getElementById('unmatched-block').style.display = 'inline-block';
+    });
+    document.getElementById('btn-import').addEventListener('click', function () {
+      if (!document.getElementById('device-select').value) {
+        alert('請先選擇廠區與設備，再進行批次匯入。');
+        return;
+      }
+      var hasExistingData = true;
+      if (hasExistingData) {
+        document.getElementById('reimport-confirm-modal').classList.add('show');
+      } else {
+        doImport();
+      }
+    });
+    function doImport() {
+      document.getElementById('reimport-confirm-modal').classList.remove('show');
+      alert('已標記刪除原資料並全部新增重匯。批次匯入完成。');
+      document.querySelector('.badge').textContent = '共 4 筆';
+      document.getElementById('unmatched-count').textContent = '2';
+      document.getElementById('unmatched-block').style.display = 'inline-block';
+    }
+    document.getElementById('reimport-yes').addEventListener('click', doImport);
+    document.getElementById('reimport-no').addEventListener('click', function () {
+      document.getElementById('reimport-confirm-modal').classList.remove('show');
+    });
+    document.getElementById('reimport-confirm-modal').addEventListener('click', function (e) {
+      if (e.target === this) document.getElementById('reimport-confirm-modal').classList.remove('show');
+    });
+    document.getElementById('unmatched-block').addEventListener('click', function () {
+      document.getElementById('unmatched-modal').classList.add('show');
+    });
+    document.getElementById('unmatched-modal-close').addEventListener('click', function () {
+      document.getElementById('unmatched-modal').classList.remove('show');
+    });
+    document.getElementById('unmatched-modal').addEventListener('click', function (e) {
+      if (e.target === this) this.classList.remove('show');
+    });
+    document.querySelector('.btn-export').addEventListener('click', function () { alert('匯出全部 Excel'); });
+  </script>
+</body>
+</html>
